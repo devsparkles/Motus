@@ -9,9 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import javax.inject.Singleton
 
-@Singleton
+
 class WordsRepositoryImpl(private val context:Context): WordsRepository {
 
     override suspend fun loadWords(): List<Word> {

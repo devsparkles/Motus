@@ -2,15 +2,27 @@ package fr.kodesparkle.motus.app
 
 import android.app.Application
 import android.content.pm.ApplicationInfo
-import dagger.hilt.android.HiltAndroidApp
+import fr.kodesparkle.motus.di.appModules
 import fr.kodesparkle.motus.utils.TimberConfiguration
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
-@HiltAndroidApp
 class MotusApp : Application(){
 
     override fun onCreate() {
         super.onCreate()
+        setupKoin()
         setupTimber()
+    }
+
+    private fun setupKoin(){
+        // Start Koin
+        startKoin {
+            // declare used Android context
+            androidContext(this@MotusApp)
+            // declare modules
+            modules(appModules)
+        }
     }
 
     private fun setupTimber(){

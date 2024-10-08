@@ -1,4 +1,4 @@
-package fr.kodesparkle.motus.presentation.gameboard.components
+package fr.kodesparkle.motus.composition.gameboard
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

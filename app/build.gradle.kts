@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
     alias(libs.plugins.com.google.devtools.ksp)
 }
 
@@ -61,23 +60,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-
     // compose
     implementation(libs.material3)
 
     // logging
     implementation(libs.timber)
 
-
-
-
     // AndroidX and Lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
-
-    // Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
 
     // Room
     implementation(libs.androidx.room.runtime)
@@ -96,16 +87,26 @@ dependencies {
     testImplementation(libs.turbine)
     testImplementation(libs.mockk)
 
-
     // logging
     implementation(libs.timber)
 
-
-    implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
 
     testImplementation(libs.mockito.kotlin)
 
+
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.compose.viewmodel)
+    implementation(libs.koin.compose.viewmodel.navigation)
+    implementation(libs.koin.android)
+    // Koin Test features
+    testImplementation(libs.koin.test)
+    // Koin for JUnit 4
+    testImplementation(libs.koin.test.junit4)
+    // Koin for JUnit 5
+    testImplementation(libs.koin.test.junit5)
 
 }

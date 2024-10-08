@@ -1,17 +1,13 @@
 package fr.kodesparkle.motus.domain.usecases
 
+import fr.kodesparkle.motus.arch.UseCase
 import fr.kodesparkle.motus.domain.model.Word
-import javax.inject.Inject
 
 /**
- * This use case will choose a word from the list of words
+ * This use case choose randomly a word from a list of words
  */
-class ChooseWordUseCase @Inject constructor(
-    private val getWordsUseCase: GetWordsUseCase
-) {
-
-    suspend operator fun invoke() : Word {
-        val words = getWordsUseCase()
-        return words.random()
+class ChooseWordUseCase : UseCase.SuspendingParameterized<List<Word>, Word>{
+    override suspend operator fun invoke(param: List<Word>) : Word {
+        return param.random()
     }
 }
