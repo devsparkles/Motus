@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import fr.kodesparkle.motus.di.coroutines.DispatcherProvider
 import fr.kodesparkle.motus.domain.usecases.ChooseWordUseCase
 import fr.kodesparkle.motus.domain.usecases.LoadWordsUseCase
+import fr.kodesparkle.motus.presentation.gameboard.models.GameBoardState
 import fr.kodesparkle.motus.presentation.gameboard.state.GameBoardAction
 import fr.kodesparkle.motus.presentation.gameboard.state.GameBoardReducer
 import kotlinx.coroutines.launch
@@ -29,6 +30,21 @@ class GameBoardViewModelImpl(
             reducer.update(GameBoardAction.SetWord(word.content))
         }
     }
+
+    override fun onSubmitClicked(guess: String) {
+        viewModelScope.launch(dispatcherProvider.io) {
+            state.collect { state ->
+                if (state is GameBoardState.Playing) {
+                    if (state.currentWord == guess) {
+                        reducer.update(GameBoardAction.SetWin(state.currentWord))
+                    } else {
+                        reducer.update(GameBoardAction.SetIncorrectGuess(state.currentWord))
+                    }
+                }
+            }
+        }
+    }
+
 
     private companion object {
         const val TAG = "GameBoardViewModelImpl"

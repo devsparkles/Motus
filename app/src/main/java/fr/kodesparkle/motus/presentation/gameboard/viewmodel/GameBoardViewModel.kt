@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 abstract class GameBoardViewModel : ViewModel() {
     abstract val state: Flow<GameBoardState>
 
+
+    abstract fun onSubmitClicked(guess: String)
 }
