@@ -1,4 +1,10 @@
 package fr.kodesparkle.motus.domain.usecases
-// this use case will just check if the word was found  currentword == selectedwords
-class VerifyWordIsGoodUseCase {
+/*
+ * This use case will verify if the word is good
+ */
+class VerifyWordIsGoodUseCase() {
+
+    operator fun invoke(currentWord: String, selectedWord: String): Boolean {
+        return currentWord == selectedWord
+    }
 }

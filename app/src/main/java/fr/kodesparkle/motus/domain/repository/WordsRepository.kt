@@ -1,6 +1,8 @@
 package fr.kodesparkle.motus.domain.repository
 
+import fr.kodesparkle.motus.domain.model.Word
+
 interface WordsRepository {
     // Allow to load the words from local
-    fun loadWords(): List<String>
+    suspend fun loadWords(): List<Word>
 }

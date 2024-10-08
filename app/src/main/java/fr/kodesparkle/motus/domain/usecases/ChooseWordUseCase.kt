@@ -1,5 +1,16 @@
 package fr.kodesparkle.motus.domain.usecases
 
-// That use case is there so choose randomly a word to play from the list of string
-class ChooseWordUseCase {
+import fr.kodesparkle.motus.domain.model.Word
+
+/**
+ * This use case will choose a word from the list of words
+ */
+class ChooseWordUseCase(
+    private val getWordsUseCase: GetWordsUseCase
+) {
+
+    suspend operator fun invoke() : Word {
+        val words = getWordsUseCase()
+        return words.random()
+    }
 }

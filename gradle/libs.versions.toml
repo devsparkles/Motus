@@ -22,6 +22,7 @@ kspVersion = "2.0.20-1.0.24"
 turbine = "0.13.0"
 uiTestJunit4Android = "1.7.3"
 junitKtx = "1.2.1"
+runtimeLivedata = "1.7.3"
 
 
 [libraries]
@@ -58,6 +59,7 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
 androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
