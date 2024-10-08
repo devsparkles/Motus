@@ -13,9 +13,10 @@ import fr.kodesparkle.motus.domain.usecases.MarkWordWithCorrectStateUseCase
 import fr.kodesparkle.motus.domain.usecases.VerifyWordIsGoodUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class GameBoardViewModel(
+class GameBoardViewModel @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     val chooseWordUseCase: ChooseWordUseCase,
     val verifyWordIsGoodUseCase: VerifyWordIsGoodUseCase,
