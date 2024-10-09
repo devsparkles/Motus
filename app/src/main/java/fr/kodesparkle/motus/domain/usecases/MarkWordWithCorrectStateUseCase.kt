@@ -1,6 +1,8 @@
 package fr.kodesparkle.motus.domain.usecases
 
+import fr.kodesparkle.motus.arch.UseCase
 import fr.kodesparkle.motus.domain.model.LetterState
+import fr.kodesparkle.motus.domain.params.MarkWordWithCorrectParam
 
 
 /**
@@ -8,13 +10,12 @@ import fr.kodesparkle.motus.domain.model.LetterState
  * and produce a hashmap that contain the letter, enum representing the state of the letter for example
  * l, well placed ; e,  misplaced ; r, not in the word
  */
-class MarkWordWithCorrectStateUseCase  constructor() {
+class MarkWordWithCorrectStateUseCase(): UseCase.Parameterized<MarkWordWithCorrectParam,Map<Char, LetterState>> {
 
-    operator fun invoke(userWord: String,
-                         correctWord: String): Map<Char, LetterState> {
+    override operator  fun invoke(param: MarkWordWithCorrectParam): Map<Char, LetterState> {
         val result = mutableMapOf<Char, LetterState>()
-        val correctWord = correctWord.toCharArray()
-        val userWord = userWord.toCharArray()
+        val correctWord = param.correctWord.toCharArray()
+        val userWord = param.userWord.toCharArray()
         for (i in correctWord.indices) {
             if (correctWord[i] == userWord[i]) {
                 result[correctWord[i]] = LetterState.WELL_PLACED

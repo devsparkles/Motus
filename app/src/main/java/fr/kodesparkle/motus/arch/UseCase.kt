@@ -18,4 +18,8 @@ sealed interface UseCase {
     interface AsyncStreamParameterized<T, R> : UseCase {
         operator fun invoke(param: T): Flow<R>
     }
+
+    interface Parameterized<T, R> : UseCase {
+        operator fun invoke(param: T): R
+    }
 }

@@ -109,4 +109,7 @@ dependencies {
     // Koin for JUnit 5
     testImplementation(libs.koin.test.junit5)
 
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:2.0.20")
+    testImplementation("io.mockk:mockk:1.13.12")
+
 }

@@ -86,58 +86,13 @@ fun GameBoardScreen(
                 Text("That word do not exist you lose word")
             }
             is GameBoardState.Playing -> {
+                Text("Playing")
 
+
+                state.currentWord
             }
         }
     }
 
 }
 
-@Composable
-fun GameBoard(word: String, onGuessSubmitted: (String) -> Unit) {
-    var currentGuess by remember { mutableStateOf("") }
-
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        // Display the word with only the first letter revealed
-        Text(
-            text = word.first() + "_".repeat(word.length - 1),
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(vertical = 16.dp)
-        )
-
-        // Input field for user guess
-        OutlinedTextField(
-            value = currentGuess,
-            onValueChange = {
-                if (it.length <= word.length) currentGuess = it.uppercase()
-            },
-            label = { Text("Enter your guess") },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                capitalization = KeyboardCapitalization.Characters,
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Done
-            ),
-            keyboardActions = KeyboardActions(onDone = {
-                if (currentGuess.length == word.length) {
-                    onGuessSubmitted(currentGuess)
-                    currentGuess = ""
-                }
-            })
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Submit button
-        Button(
-            onClick = {
-                if (currentGuess.length == word.length) {
-                    onGuessSubmitted(currentGuess)
-                    currentGuess = ""
-                }
-            }, enabled = currentGuess.length == word.length
-        ) {
-            Text("Submit Guess")
-        }
-    }
-}
