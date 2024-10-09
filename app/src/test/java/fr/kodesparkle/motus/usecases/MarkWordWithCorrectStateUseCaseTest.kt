@@ -26,6 +26,7 @@ class MarkWordWithCorrectStateUseCaseTest {
             'h' to LetterState.WELL_PLACED,
             'e' to LetterState.WELL_PLACED,
             'l' to LetterState.WELL_PLACED,
+            'l' to LetterState.WELL_PLACED,
             'o' to LetterState.WELL_PLACED
         )
         assertEquals(expected, result)
@@ -34,17 +35,18 @@ class MarkWordWithCorrectStateUseCaseTest {
     @Test
     fun `verify all letters misplaced`() = runTest {
         // given
-        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "olleh")
+        val param = MarkWordWithCorrectParam(correctWord = "broue", userWord = "eubro")
 
         // when
         val result = sut.invoke(param)
 
         // then
         val expected = mapOf(
-            'h' to LetterState.MISPLACED,
-            'e' to LetterState.MISPLACED,
-            'l' to LetterState.MISPLACED,
-            'o' to LetterState.MISPLACED
+            'b' to LetterState.MISPLACED,
+            'r' to LetterState.MISPLACED,
+            'o' to LetterState.MISPLACED,
+            'u' to LetterState.MISPLACED,
+            'e' to LetterState.MISPLACED
         )
         assertEquals(expected, result)
     }
@@ -52,7 +54,7 @@ class MarkWordWithCorrectStateUseCaseTest {
     @Test
     fun `verify all letters not in word`() = runTest {
         // given
-        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "world")
+        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "btrin")
 
         // when
         val result = sut.invoke(param)
@@ -61,6 +63,7 @@ class MarkWordWithCorrectStateUseCaseTest {
         val expected = mapOf(
             'h' to LetterState.NOT_IN_WORD,
             'e' to LetterState.NOT_IN_WORD,
+            'l' to LetterState.NOT_IN_WORD,
             'l' to LetterState.NOT_IN_WORD,
             'o' to LetterState.NOT_IN_WORD
         )
@@ -70,17 +73,18 @@ class MarkWordWithCorrectStateUseCaseTest {
     @Test
     fun `verify mixed letter states`() = runTest {
         // given
-        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "helps")
+        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "ehllo")
 
         // when
         val result = sut.invoke(param)
 
         // then
         val expected = mapOf(
-            'h' to LetterState.WELL_PLACED,
-            'e' to LetterState.WELL_PLACED,
+            'h' to LetterState.MISPLACED,
+            'e' to LetterState.MISPLACED,
             'l' to LetterState.WELL_PLACED,
-            'o' to LetterState.NOT_IN_WORD
+            'l' to LetterState.WELL_PLACED,
+            'o' to LetterState.WELL_PLACED
         )
         assertEquals(expected, result)
     }
@@ -88,17 +92,18 @@ class MarkWordWithCorrectStateUseCaseTest {
     @Test
     fun `verify repeated letters in correct word`() = runTest {
         // given
-        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "world")
+        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "hhllw")
 
         // when
         val result = sut.invoke(param)
 
         // then
         val expected = mapOf(
-            'h' to LetterState.NOT_IN_WORD,
-            'e' to LetterState.NOT_IN_WORD,
-            'l' to LetterState.NOT_IN_WORD,
-            'o' to LetterState.NOT_IN_WORD
+            'h' to LetterState.WELL_PLACED,
+            'e' to LetterState.MISPLACED,
+            'l' to LetterState.WELL_PLACED,
+            'l' to LetterState.WELL_PLACED,
+            'o' to LetterState.NOT_IN_WORD,
         )
         assertEquals(expected, result)
     }
