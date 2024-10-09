@@ -2,7 +2,7 @@ package fr.kodesparkle.motus.presentation.gameboard.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import fr.kodesparkle.motus.di.coroutines.DispatcherProvider
-import fr.kodesparkle.motus.domain.params.VerifyWordIsGoodParam
+import fr.kodesparkle.motus.domain.params.IsUserGuessCorrectParam
 import fr.kodesparkle.motus.domain.usecases.GetWordToGuessUseCase
 import fr.kodesparkle.motus.domain.usecases.GetAllTheWordsUseCase
 import fr.kodesparkle.motus.domain.usecases.IsUserGuessCorrectUseCase
@@ -39,7 +39,7 @@ class GameBoardViewModelImpl(
         viewModelScope.launch(dispatcherProvider.io) {
             state.collectLatest { state ->
                 if (state is GameBoardState.Playing) {
-                    val result  = isUserGuessCorrectUseCase(VerifyWordIsGoodParam(currentWord = state.currentWord, selectedWord = guess))
+                    val result  = isUserGuessCorrectUseCase(IsUserGuessCorrectParam(currentWord = state.currentWord, selectedWord = guess))
                     if (result) {
                         reducer.update(GameBoardAction.SetWin(state.currentWord))
                     } else {

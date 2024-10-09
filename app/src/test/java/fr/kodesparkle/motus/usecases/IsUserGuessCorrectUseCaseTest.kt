@@ -1,6 +1,6 @@
 package fr.kodesparkle.motus.usecases
 
-import fr.kodesparkle.motus.domain.params.VerifyWordIsGoodParam
+import fr.kodesparkle.motus.domain.params.IsUserGuessCorrectParam
 import fr.kodesparkle.motus.domain.usecases.IsUserGuessCorrectUseCase
 import kotlin.test.Test
 import kotlin.test.assertFalse
@@ -13,7 +13,7 @@ class IsUserGuessCorrectUseCaseTest {
     @Test
     fun `invoke should return true when currentWord is equal to selectedWord`() {
         // Given
-        val param = VerifyWordIsGoodParam(
+        val param = IsUserGuessCorrectParam(
             currentWord = "Kotlin",
             selectedWord = "Kotlin"
         )
@@ -28,7 +28,7 @@ class IsUserGuessCorrectUseCaseTest {
     @Test
     fun `invoke should return false when currentWord is not equal to selectedWord`() {
         // Given
-        val param = VerifyWordIsGoodParam(
+        val param = IsUserGuessCorrectParam(
             currentWord = "Kotlin",
             selectedWord = "Java"
         )

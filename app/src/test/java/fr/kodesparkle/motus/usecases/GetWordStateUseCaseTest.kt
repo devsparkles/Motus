@@ -1,7 +1,7 @@
 package fr.kodesparkle.motus.usecases
 
 import fr.kodesparkle.motus.domain.model.LetterState
-import fr.kodesparkle.motus.domain.params.MarkWordWithCorrectParam
+import fr.kodesparkle.motus.domain.params.GetWordStateParam
 import fr.kodesparkle.motus.domain.usecases.GetWordStateUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -16,7 +16,7 @@ class GetWordStateUseCaseTest {
     @Test
     fun `verify all letters well placed`() = runTest {
         // given
-        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "hello")
+        val param = GetWordStateParam(correctWord = "hello", userWord = "hello")
 
         // when
         val result = sut.invoke(param)
@@ -35,7 +35,7 @@ class GetWordStateUseCaseTest {
     @Test
     fun `verify all letters misplaced`() = runTest {
         // given
-        val param = MarkWordWithCorrectParam(correctWord = "broue", userWord = "eubro")
+        val param = GetWordStateParam(correctWord = "broue", userWord = "eubro")
 
         // when
         val result = sut.invoke(param)
@@ -54,7 +54,7 @@ class GetWordStateUseCaseTest {
     @Test
     fun `verify all letters not in word`() = runTest {
         // given
-        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "btrin")
+        val param = GetWordStateParam(correctWord = "hello", userWord = "btrin")
 
         // when
         val result = sut.invoke(param)
@@ -73,7 +73,7 @@ class GetWordStateUseCaseTest {
     @Test
     fun `verify mixed letter states`() = runTest {
         // given
-        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "ehllo")
+        val param = GetWordStateParam(correctWord = "hello", userWord = "ehllo")
 
         // when
         val result = sut.invoke(param)
@@ -92,7 +92,7 @@ class GetWordStateUseCaseTest {
     @Test
     fun `verify repeated letters in correct word`() = runTest {
         // given
-        val param = MarkWordWithCorrectParam(correctWord = "hello", userWord = "hhllw")
+        val param = GetWordStateParam(correctWord = "hello", userWord = "hhllw")
 
         // when
         val result = sut.invoke(param)
