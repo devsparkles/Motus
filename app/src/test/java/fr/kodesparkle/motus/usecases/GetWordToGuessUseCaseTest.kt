@@ -1,14 +1,14 @@
 package fr.kodesparkle.motus.usecases
 
 import fr.kodesparkle.motus.domain.model.Word
-import fr.kodesparkle.motus.domain.usecases.ChooseWordUseCase
+import fr.kodesparkle.motus.domain.usecases.GetWordToGuessUseCase
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class ChooseWordUseCaseTest {
+class GetWordToGuessUseCaseTest {
 
-    private val chooseWordUseCase = ChooseWordUseCase()
+    private val getWordToGuessUseCase = GetWordToGuessUseCase()
 
     @Test
     fun `invoke should return a word from the list`() = runTest {
@@ -16,7 +16,7 @@ class ChooseWordUseCaseTest {
         val words = listOf(Word("Hello"), Word("World"), Word("Test"))
 
         // When
-        val selectedWord = chooseWordUseCase.invoke(words)
+        val selectedWord = getWordToGuessUseCase.invoke(words)
 
         // Then
         assertTrue(selectedWord in words, "Selected word should be in the given list of words")

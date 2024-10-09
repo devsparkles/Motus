@@ -1,12 +1,11 @@
 package fr.kodesparkle.motus.presentation.gameboard.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import fr.kodesparkle.motus.di.coroutines.DispatcherProvider
 import fr.kodesparkle.motus.domain.params.VerifyWordIsGoodParam
-import fr.kodesparkle.motus.domain.usecases.ChooseWordUseCase
-import fr.kodesparkle.motus.domain.usecases.LoadWordsUseCase
-import fr.kodesparkle.motus.domain.usecases.VerifyWordIsGoodUseCase
+import fr.kodesparkle.motus.domain.usecases.GetWordToGuessUseCase
+import fr.kodesparkle.motus.domain.usecases.GetAllTheWordsUseCase
+import fr.kodesparkle.motus.domain.usecases.IsUserGuessCorrectUseCase
 import fr.kodesparkle.motus.presentation.gameboard.models.GameBoardState
 import fr.kodesparkle.motus.presentation.gameboard.state.GameBoardAction
 import fr.kodesparkle.motus.presentation.gameboard.state.GameBoardReducer
@@ -14,9 +13,9 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class GameBoardViewModelImpl(
-    private val loadWordsUseCase: LoadWordsUseCase,
-    private val chooseWordUseCase: ChooseWordUseCase,
-    private val verifyWordIsGoodUseCase: VerifyWordIsGoodUseCase,
+    private val getAllTheWordsUseCase: GetAllTheWordsUseCase,
+    private val getWordToGuessUseCase: GetWordToGuessUseCase,
+    private val isUserGuessCorrectUseCase: IsUserGuessCorrectUseCase,
     private val reducer: GameBoardReducer,
     private val dispatcherProvider: DispatcherProvider
 ) : GameBoardViewModel() {
@@ -30,8 +29,8 @@ class GameBoardViewModelImpl(
     private fun startGame() {
         viewModelScope.launch(dispatcherProvider.io) {
             reducer.update(GameBoardAction.SetLoading)
-            val words = loadWordsUseCase()
-            val word = chooseWordUseCase(words)
+            val words = getAllTheWordsUseCase()
+            val word = getWordToGuessUseCase(words)
             reducer.update(GameBoardAction.SetWord(word.content))
         }
     }
@@ -40,7 +39,7 @@ class GameBoardViewModelImpl(
         viewModelScope.launch(dispatcherProvider.io) {
             state.collectLatest { state ->
                 if (state is GameBoardState.Playing) {
-                    val result  = verifyWordIsGoodUseCase(VerifyWordIsGoodParam(currentWord = state.currentWord, selectedWord = guess))
+                    val result  = isUserGuessCorrectUseCase(VerifyWordIsGoodParam(currentWord = state.currentWord, selectedWord = guess))
                     if (result) {
                         reducer.update(GameBoardAction.SetWin(state.currentWord))
                     } else {

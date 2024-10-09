@@ -2,16 +2,16 @@ package fr.kodesparkle.motus.usecases
 
 import fr.kodesparkle.motus.domain.model.LetterState
 import fr.kodesparkle.motus.domain.params.MarkWordWithCorrectParam
-import fr.kodesparkle.motus.domain.usecases.MarkWordWithCorrectStateUseCase
+import fr.kodesparkle.motus.domain.usecases.GetWordStateUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertEquals
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class MarkWordWithCorrectStateUseCaseTest {
+class GetWordStateUseCaseTest {
 
-    private val sut = MarkWordWithCorrectStateUseCase()
+    private val sut = GetWordStateUseCase()
 
     @Test
     fun `verify all letters well placed`() = runTest {
