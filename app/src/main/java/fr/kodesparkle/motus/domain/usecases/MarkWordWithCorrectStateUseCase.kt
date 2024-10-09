@@ -10,7 +10,7 @@ import fr.kodesparkle.motus.domain.params.MarkWordWithCorrectParam
  * and produce a hashmap that contain the letter, enum representing the state of the letter for example
  * l, well placed ; e,  misplaced ; r, not in the word
  */
-class MarkWordWithCorrectStateUseCase(): UseCase.Parameterized<MarkWordWithCorrectParam,Map<Char, LetterState>> {
+class MarkWordWithCorrectStateUseCase : UseCase.Parameterized<MarkWordWithCorrectParam,Map<Char, LetterState>> {
 
     override operator  fun invoke(param: MarkWordWithCorrectParam): Map<Char, LetterState> {
         val result = mutableMapOf<Char, LetterState>()
