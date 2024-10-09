@@ -1,11 +1,14 @@
 package fr.kodesparkle.motus.domain.usecases
 
+import fr.kodesparkle.motus.arch.UseCase
+import fr.kodesparkle.motus.domain.params.VerifyWordIsGoodParam
+
 /*
  * This use case will verify if the word is good
  */
-class VerifyWordIsGoodUseCase constructor() {
+class VerifyWordIsGoodUseCase : UseCase.Parameterized<VerifyWordIsGoodParam, Boolean> {
 
-    operator fun invoke(currentWord: String, selectedWord: String): Boolean {
-        return currentWord == selectedWord
+    override operator fun invoke(param: VerifyWordIsGoodParam): Boolean {
+        return param.currentWord == param.selectedWord
     }
 }
