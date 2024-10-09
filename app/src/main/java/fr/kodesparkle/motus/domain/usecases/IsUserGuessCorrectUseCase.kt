@@ -4,7 +4,7 @@ import fr.kodesparkle.motus.arch.UseCase
 import fr.kodesparkle.motus.domain.params.IsUserGuessCorrectParam
 
 /*
- * This use case will verify if the word is good
+ * Verify if the word is good
  */
 class IsUserGuessCorrectUseCase : UseCase.Parameterized<IsUserGuessCorrectParam, Boolean> {
 

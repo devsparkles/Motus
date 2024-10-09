@@ -4,7 +4,6 @@ import fr.kodesparkle.motus.arch.UseCase
 import fr.kodesparkle.motus.domain.model.LetterState
 import fr.kodesparkle.motus.domain.params.GetWordStateParam
 
-
 /**
  * This use case will take a word from the user and the correct word
  * and produce a hashmap that contain the letter, enum representing the state of the letter for example

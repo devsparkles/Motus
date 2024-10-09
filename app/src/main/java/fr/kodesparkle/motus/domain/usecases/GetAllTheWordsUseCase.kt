@@ -5,7 +5,7 @@ import fr.kodesparkle.motus.domain.model.Word
 import fr.kodesparkle.motus.domain.repository.WordsRepository
 
 /**
- * This use case load words from the repository
+ * Load words from the repository
  */
 class GetAllTheWordsUseCase(private val wordsRepository: WordsRepository): UseCase.Suspending<List<Word>> {
 

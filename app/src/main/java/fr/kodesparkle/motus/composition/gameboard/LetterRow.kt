@@ -8,11 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import fr.kodesparkle.motus.domain.model.LetterState
-
+//TODO not used yet
 @Composable
 fun LetterRow(list: List<LetterState>) {
-
-
     Box{
         Row {
 

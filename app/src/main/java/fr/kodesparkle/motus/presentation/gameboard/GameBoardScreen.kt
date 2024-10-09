@@ -52,7 +52,7 @@ fun GameBoardScreen(
             is GameBoardState.IncorrectGuess -> {
                 // display here the attempt with the right color
                 // white background if the letter is not existent in the selected word
-                // yello if the letter is existent in the selected word
+                // yellow if the letter is existent in the selected word
                 // green if the letter is in the selected word and at the right position
                 Text("Incorrect word. Try again!")
             }

@@ -15,7 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import fr.kodesparkle.motus.R
-
+//TODO not used yet
 @Composable
 fun HeaderBar() {
     Box(
