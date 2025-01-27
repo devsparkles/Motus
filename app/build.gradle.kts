@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
     alias(libs.plugins.com.google.devtools.ksp)
+    id("jacoco")
 }
 
 android {
@@ -28,6 +29,14 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+        debug {
+            isMinifyEnabled = false
+            isShrinkResources = false
+            enableAndroidTestCoverage = true
+            enableUnitTestCoverage = true
+            isTestCoverageEnabled = true
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -40,6 +49,10 @@ android {
         compose = true
     }
 }
+
+//jacoco {
+//    toolVersion = libs.versions.jacoco.get()
+//}
 
 dependencies {
 
@@ -113,3 +126,11 @@ dependencies {
     testImplementation("io.mockk:mockk:1.13.12")
 
 }
+
+//apply(from = "$rootDir/jacoco.gradle.kts")
+
+
+jacoco {
+    toolVersion = libs.versions.jacoco.get()
+}
+apply(from = "$rootDir/jacoco.gradle.kts")

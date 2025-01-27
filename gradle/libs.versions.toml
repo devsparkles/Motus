@@ -30,6 +30,8 @@ uiTestJunit4Android = "1.7.3"
 junitKtx = "1.2.1"
 runtimeLivedata = "1.7.3"
 koin-bom = "4.0.0"
+jacoco = "0.8.12"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -79,3 +81,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+jacoco = { id = "org.jacoco.core", version.ref = "jacoco" }
